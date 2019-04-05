@@ -111,15 +111,36 @@ document.onreadystatechange = () => {
     }
 }
 
-function addPlayer(){
+function addPlayer() {
+    if(playerNumber < 4){
+    playerDiv = document.createElement("div")
+    playerDiv.id = "p" + playerNumber
     kolor = document.createElement("input")
     kolor.id = "kolor"
-
+    kolor.type = "color"
+    playerDiv.appendChild(kolor)
+    numer = document.createElement("input")
+    numer.id = "numer"
+    numer.type = "number"
+    numer.max = 4
+    numer.min = 1
+    playerDiv.appendChild(numer)
+    klawisz = document.createElement("input")
+    klawisz.id = "key"
+    klawisz.onkeyup = function(e){
+        this.value = e.key
+        console.log(e);
+        
+    }
+    klawisz.type = "text"
+    playerDiv.appendChild(klawisz)
+    document.body.appendChild(playerDiv)
     playerNumber++
-
+    }
 }
 
 function mapStart() {
+    
     document.body.innerHTML = '';
     canvas = document.createElement("canvas")
     canvas.height = stoProcentH
@@ -132,6 +153,9 @@ function mapStart() {
     img.src = "img/grass.jpg"
     img.addEventListener("load", () => {
         trackRender(ctx, img)
+        for(var i = 0; i < playerNumber; i++){
+            var player = new Player
+        }
     })
 }
 
